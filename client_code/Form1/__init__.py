@@ -20,7 +20,7 @@ class Form1(Form1Template):
   def drop_down_ClimateRegion_change(self, **event_args):
     """This method is called when an item is selected"""
     #self.drop_down_ClimateRegion.visible = True
-    stations = anvil.server.call('get_ws', self.drop_down_ClimateRegion.selected_value)
+    #stations = anvil.server.call('get_ws', self.drop_down_ClimateRegion.selected_value)
     #self.wsDropdown.items = stations
 
   def drop_down_Station_change(self, **event_args):
