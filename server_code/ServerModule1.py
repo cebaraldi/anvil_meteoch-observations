@@ -13,12 +13,12 @@ import anvil.server
 #   return 42
 #
 
-url = 'https://data.geo.admin.ch'
-path = 'ch.meteoschweiz.klima/nbcn-tageswerte'
-wsurl = url + '/' + path + '/' + 'liste-download-nbcn-d.csv'
-ws = pd.read_csv(wsurl, sep=";", header=0, encoding = "ISO-8859-1").dropna()
-pd.options.display.float_format = '{:.2f}'.format
-ws.rename(columns={'Station height m. a. sea level': 'Elevation'}, inplace=True)
-ws.drop(['WIGOS-ID', 'CoordinatesE', 'CoordinatesN', 'URL Previous years (verified data)', 
-         'URL Current year', 'station/location', 'Canton', 'Climate region'], axis=1)
+#url = 'https://data.geo.admin.ch'
+#path = 'ch.meteoschweiz.klima/nbcn-tageswerte'
+#wsurl = url + '/' + path + '/' + 'liste-download-nbcn-d.csv'
+#ws = pd.read_csv(wsurl, sep=";", header=0, encoding = "ISO-8859-1").dropna()
+#pd.options.display.float_format = '{:.2f}'.format
+#ws.rename(columns={'Station height m. a. sea level': 'Elevation'}, inplace=True)
+#ws.drop(['WIGOS-ID', 'CoordinatesE', 'CoordinatesN', 'URL Previous years (verified data)', 
+#         'URL Current year', 'station/location', 'Canton', 'Climate region'], axis=1)
 
