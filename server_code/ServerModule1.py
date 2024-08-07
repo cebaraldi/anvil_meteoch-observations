@@ -26,3 +26,7 @@ def dl():
 
 #https://data.geo.admin.ch/ch.meteoschweiz.klima/nbcn-tageswerte/nbcn-daily_GSB_previous.csv
 #https://data.geo.admin.ch/ch.meteoschweiz.klima/nbcn-tageswerte/nbcn-daily_GSB_current.csv
+  #df = dict_to_dataframe(body)
+  #df = df.drop('STATIONS_ID', axis=1) # already given as parameter
+  dict_list = ws.to_dict('list')
+  return(dict_list)

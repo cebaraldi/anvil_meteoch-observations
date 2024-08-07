@@ -11,6 +11,8 @@ class Form1(Form1Template):
     self.init_components(**properties)
 
     # Any code you write here will run before the form opens.
-    anvil.server.call('dl')
+    ws = anvil.server.call('dl')
+    print(ws)
     self.drop_down_ClimateRegion.items = ['a', 'b', 'c']
+    self.drop_down_Station.items = ['0', '1', '2', '3']
     
