@@ -12,7 +12,8 @@ class Form1(Form1Template):
 
     # Any code you write here will run before the form opens.
     ws = anvil.server.call('dl')
-    print(ws)
+    print(ws['ClimateRegion'])
+    #print(ws)
     self.drop_down_ClimateRegion.items = ['a', 'b', 'c']
     self.drop_down_Station.visible = False
     #self.drop_down_Station.items = ['0', '1', '2', '3']
