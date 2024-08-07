@@ -12,7 +12,14 @@ class Form1(Form1Template):
 
     # Any code you write here will run before the form opens.
     ws = anvil.server.call('dl')
-    print(ws)
+    print(ws.columns)
     self.drop_down_ClimateRegion.items = ['a', 'b', 'c']
     self.drop_down_Station.items = ['0', '1', '2', '3']
+
+  def drop_down_ClimateRegion_change(self, **event_args):
+    """This method is called when an item is selected"""
+    self.drop_down_ClimateRegion.visible = True
+    stations = anvil.server.call('get_ws', self.drop_down_ClimateRegion.selected_value)
+    self.wsDropdown.items = stations
+
     

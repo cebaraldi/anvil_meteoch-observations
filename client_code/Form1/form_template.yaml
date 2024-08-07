@@ -17,6 +17,7 @@ components:
       items: []
     type: DropDown
     layout_properties: {grid_position: 'VRDAZZ,FYOTOR HFKXFK,AXQGPU'}
+    event_bindings: {change: drop_down_ClimateRegion_change}
   - name: label_4
     properties: {text: Station}
     type: Label
