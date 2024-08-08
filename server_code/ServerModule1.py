@@ -59,7 +59,6 @@ def get_ClimateRegion():
   rows = app_tables.meteoch_weatherstations.search()
   unique_values = set(row['climateregion'] for row in rows)
   sorted_values = sorted(list(unique_values))
-  print(sorted_values)
   return(sorted_values)
 
 @anvil.server.callable
