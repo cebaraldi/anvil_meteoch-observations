@@ -6,20 +6,20 @@ import pandas as pd
 from datetime import datetime
         
 def convert_to_number(string_number):
+  try:
+    return int(string_number)
+  except ValueError:
     try:
-        return int(string_number)
+      return float(string_number)
     except ValueError:
-        try:
-            return float(string_number)
-        except ValueError:
-            return None  # Or handle the error differently
+      return None  # Or handle the error differently
 
 def convert_to_date(string_date):
-    format_string = "%Y%m%d"
-    try:
-        return datetime.strptime(string_date, format_string),
-    except ValueError:
-        return None  # Or handle the error differently
+  format_string = "%Y%m%d"
+  try:
+    return datetime.strptime(string_date, format_string),
+  except ValueError:
+    return None  # Or handle the error differently
 
 @anvil.server.callable
 def dl():
