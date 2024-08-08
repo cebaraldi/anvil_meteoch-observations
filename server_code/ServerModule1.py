@@ -69,6 +69,13 @@ def get_Station(ClimateRegion):
   return(sorted_values)
 
 @anvil.server.callable
+def get_WSID(station):
+  rows = app_tables.meteoch_weatherstations.search(station=q.ilike(station))
+  unique_values = set(row['station'] for row in rows)
+  sorted_values = sorted(list(unique_values))
+  return(sorted_values)
+  
+@anvil.server.callable
 def empty_table(table_name):
   table = getattr(app_tables, table_name)
   table.delete_all_rows()

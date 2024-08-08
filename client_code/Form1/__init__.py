@@ -1,5 +1,6 @@
 from ._anvil_designer import Form1Template
 from anvil import *
+import plotly.graph_objects as go
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
@@ -29,9 +30,10 @@ class Form1(Form1Template):
     """This method is called when an item is selected"""
     ws = self.drop_down_Station.selected_value
     print(ws) 
-
+    wsid = anvil.server.call('get_WSID', ws)
+    print(wsid) 
     
-    data = anvil.server.call('dl_zip', '01420')
+    data = anvil.server.call('dl_zip', wsid)
     Notification('observations downloaded').show()
     
     print(data.keys())
