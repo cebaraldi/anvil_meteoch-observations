@@ -30,5 +30,7 @@ def dl():
 
   #df = dict_to_dataframe(body)
   #df = df.drop('STATIONS_ID', axis=1) # already given as parameter
+  anvil.server.session[ws] = ws
   dict_list = ws.to_dict('list')
   return(dict_list)
+
