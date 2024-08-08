@@ -21,6 +21,7 @@ def dl():
   ws.rename(columns={'Climate region': 'ClimateRegion'}, inplace=True)
   ws.rename(columns={'Data since': 'DataSince'}, inplace=True)
 
+  
 #  ['Station', 'label', 'WIGOS-ID', 'DataSince', 'Elevation',
 #       'CoordinatesE', 'CoordinatesN', 'Latitude', 'Longitude',
 #       'ClimateRegion', 'Canton', 'URL Previous years (verified data)',
@@ -30,7 +31,7 @@ def dl():
 
   #df = dict_to_dataframe(body)
   #df = df.drop('STATIONS_ID', axis=1) # already given as parameter
-  anvil.server.session[ws] = ws
+  # anvil.server.session[ws] = ws ###> not for pandas dataframe...
   dict_list = ws.to_dict('list')
   return(dict_list)
 
