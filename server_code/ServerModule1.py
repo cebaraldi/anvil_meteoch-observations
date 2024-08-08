@@ -4,6 +4,7 @@ from anvil.tables import app_tables
 import anvil.server
 import pandas as pd
 from datetime import datetime
+import requests
         
 def convert_to_number(string_number):
   try:
