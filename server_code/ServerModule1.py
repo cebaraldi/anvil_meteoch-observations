@@ -5,6 +5,7 @@ import anvil.server
 import pandas as pd
 from datetime import datetime
 import requests
+from contextlib import closing
         
 def convert_to_number(string_number):
   try:
