@@ -4,6 +4,7 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 import anvil.server
+from utility import filter_dict, filter_by_ClimateRegion 
 
 class Form1(Form1Template):
   def __init__(self, **properties):
@@ -15,15 +16,16 @@ class Form1(Form1Template):
     self.drop_down_ClimateRegion.items = sorted(set(self.ws['ClimateRegion']))
     self.label_Station.visible = False
     self.drop_down_Station.visible = False
-
+    
   def drop_down_ClimateRegion_change(self, **event_args):
     """This method is called when an item is selected"""
     cr = self.drop_down_ClimateRegion.selected_value
     print(cr)
-    print(self.ws)
-    newl = [r for r in self.ws if (r['ClimateRegion'] == cr)]
+    #print(self.ws)
+    #newl = filter_dict(self.ws, filter_by_ClimateRegion)
+    #newl = filter_dict_by_key(self.ws, 'ClimateRegion', cr)
     #newl = [d for d in dictn if d['Age'] > aget]
-    print(newl)
+    #print(newl)
     self.label_Station.visible = True
     self.drop_down_Station.visible = True
     #self.drop_down_Station.items = self.app.state.xyz
