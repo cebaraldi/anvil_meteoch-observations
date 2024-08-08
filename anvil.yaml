@@ -17,5 +17,38 @@ db_schema:
   meteoch_weatherstations:
     client: none
     server: full
-    columns: []
+    columns:
+    - name: Station
+      admin_ui: {width: 200, order: 0}
+      type: string
+    - name: label
+      admin_ui: {width: 200, order: 1}
+      type: string
+    - name: WIGOS-ID
+      admin_ui: {width: 200, order: 2}
+      type: string
+    - name: DataSince
+      admin_ui: {width: 200, order: 3}
+      type: date
+    - name: Elevation
+      admin_ui: {width: 200, order: 4}
+      type: number
+    - name: Latitude
+      admin_ui: {width: 200, order: 5}
+      type: number
+    - name: Longitude
+      admin_ui: {width: 200, order: 6}
+      type: number
+    - name: ClimateRegion
+      admin_ui: {width: 200, order: 7}
+      type: string
+    - name: Canton
+      admin_ui: {width: 200, order: 8}
+      type: string
+    - name: URL_prevy
+      admin_ui: {width: 200, order: 9}
+      type: string
+    - name: URL_curry
+      admin_ui: {width: 200, order: 10}
+      type: string
     title: MeteoCH_WeatherStations

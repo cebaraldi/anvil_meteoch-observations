@@ -21,7 +21,7 @@ def dl():
   ws.rename(columns={'Climate region': 'ClimateRegion'}, inplace=True)
   ws.rename(columns={'Data since': 'DataSince'}, inplace=True)
 
-#  ['Station', 'label', 'WIGOS-ID', 'Data since', 'Elevation',
+#  ['Station', 'label', 'WIGOS-ID', 'DataSince', 'Elevation',
 #       'CoordinatesE', 'CoordinatesN', 'Latitude', 'Longitude',
 #       'ClimateRegion', 'Canton', 'URL Previous years (verified data)',
 #       'URL Current year']
