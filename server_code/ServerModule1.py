@@ -6,6 +6,8 @@ import pandas as pd
 from datetime import datetime
 import requests
 from contextlib import closing
+import io
+import zipfile
         
 def convert_to_number(string_number):
   try:
@@ -73,7 +75,7 @@ def get_Station(ClimateRegion):
 @anvil.server.callable
 def get_WSID(station):
   rows = app_tables.meteoch_weatherstations.search(station=q.ilike(station))
-  unique_values = set(row['station'] for row in rows)
+  unique_values = set(row['wsid'] for row in rows)
   sorted_values = sorted(list(unique_values))
   return(sorted_values)
   
