@@ -11,27 +11,41 @@ components:
   - name: label_3
     properties: {text: Climate Region}
     type: Label
-    layout_properties: {grid_position: 'VRDAZZ,FYOTOR RQHNDI,LYVBGC'}
+    layout_properties: {grid_position: 'SCOIEP,PNOGTD JMZYBJ,YTSDSB'}
   - name: drop_down_ClimateRegion
     properties:
       items: []
     type: DropDown
-    layout_properties: {grid_position: 'VRDAZZ,FYOTOR HFKXFK,AXQGPU'}
+    layout_properties: {grid_position: 'SCOIEP,PNOGTD YOOZVB,HMIMZY'}
     event_bindings: {change: drop_down_ClimateRegion_change}
   - name: label_Station
     properties: {text: Station}
     type: Label
-    layout_properties: {grid_position: 'VRDAZZ,EXKEZC AYZDSM,SWSZOW'}
+    layout_properties: {grid_position: 'SCOIEP,QJLXML FOLBPA,DTBQNE'}
   - name: drop_down_Station
     properties:
       items: []
     type: DropDown
-    layout_properties: {grid_position: 'VRDAZZ,EXKEZC UCNZJA,IUWZAG'}
+    layout_properties: {grid_position: 'SCOIEP,QJLXML EKHGFE,FLIUVL'}
     event_bindings: {change: drop_down_Station_change}
-  - name: plot_1
+  - name: grid_panel_1
     properties: {}
-    type: Plot
-    layout_properties: {grid_position: 'TJAAKK,FDTHNW'}
+    type: GridPanel
+    layout_properties: {grid_position: 'YHVIAW,VPHHSU'}
+    components:
+    - name: check_box_CurrentData
+      properties: {text: Current Data, checked: true}
+      type: CheckBox
+      layout_properties: {row: MFCKYR, width_xs: 6, col_xs: 0}
+      event_bindings: {change: check_box_CurrentData_change}
+    - name: check_box_HistoricalData
+      properties: {text: Historical Data}
+      type: CheckBox
+      layout_properties: {row: MFCKYR, width_xs: 6, col_xs: 0}
+    - name: plot_1
+      properties: {}
+      type: Plot
+      layout_properties: {row: HUZCAW, width_xs: 12, col_xs: 0}
 - type: FlowPanel
   properties: {}
   name: navbar_links

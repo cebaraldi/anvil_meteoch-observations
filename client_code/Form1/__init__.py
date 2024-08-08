@@ -30,36 +30,36 @@ class Form1(Form1Template):
     """This method is called when an item is selected"""
     ws = self.drop_down_Station.selected_value
     print(ws) 
-    wsid = anvil.server.call('get_WSID', ws)
-    print(wsid) 
+    anvil.server.call('get_Observations', 
+                      ws,
+                      self.check_box_CurrentData.checked, 
+                      self.check_box_HistoricalData.checked
+                     )
+#    if self.check_box_CurrentData.checked:
+#      urlcurry = anvil.server.call('get_URLcurrent', ws)
+#    if self.check_box_HistoricalData.checked:       
+#      urlprevy = anvil.server.call('get_URLhistorical', ws)
+    #print(wsid) 
     
-    data = anvil.server.call('dl_zip', wsid)
+    data = anvil.server.call('dl_csv', wsid)
     Notification('observations downloaded').show()
     
-    print(data.keys())
-    obsdate = data['MESS_DATUM']
-    tmin = data['TNK']
-    tavg = data['TMK']
-    tmax = data['TXK']
-    print(obsdate)
-    print(tavg)
-    print(f"Length of mininum temperatue observations is {len(tmin)}")
-    print(f"Length of maxinum temperatue observations is {len(tmax)}")
+    #print(data.keys())
+    #obsdate = data['MESS_DATUM']
+    #tmin = data['TNK']
+    #tavg = data['TMK']
+    #tmax = data['TXK']
+    #print(obsdate)
+    #print(tavg)
+    #print(f"Length of mininum temperatue observations is {len(tmin)}")
+    #print(f"Length of maxinum temperatue observations is {len(tmax)}")
 
-    # Sample data
-    #x = [1, 2, 3, 4, 5]
-    #y = [2, 4, 5, 4, 5]
-    x = strings_to_dates(obsdate, date_format="%Y%m%d")
-    #y = strings_to_floats(tavg)
-    y = replace_negative_999(strings_to_floats(tavg))
-    print(y)
+    #x = strings_to_dates(obsdate, date_format="%Y%m%d")
+    #y = replace_negative_999(strings_to_floats(tavg))
+    #print(y)
 
     # Create a Plotly figure
-    fig = go.Figure(data=go.Scatter(x=x, y=y))
+    #fig = go.Figure(data=go.Scatter(x=x, y=y))
 
     # Display the plot in an Anvil Plot component (client side)
-    self.plot_1.figure = fig    
-
-
-
-    
+    #self.plot_1.figure = fig        

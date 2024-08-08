@@ -78,11 +78,35 @@ def get_WSID(station):
   unique_values = set(row['wsid'] for row in rows)
   sorted_values = sorted(list(unique_values))
   return(sorted_values)
-  
+
+@anvil.server.callable
+def get_Observations(ws, current=True, historical=False):
+  rows = app_tables.meteoch_weatherstations.search(station=q.ilike(ws))
+  if not current and not historical:
+    current = True
+  print(current,historical)
+  if current:
+    urlcurry = set(row['urlcurry'] for row in rows)
+    cws = pd.read_csv(urlcurry, sep=";", header=0, encoding = "latin_1").dropna()
+    print(urlcurry)
+  if historical:
+    urlprevy = set(row['urlprevy'] for row in rows)
+    pws = pd.read_csv(urlprevy, sep=";", header=0, encoding = "latin_1").dropna()
+    print(urlprevy)
+  #return(sorted_values)
+
+def get_URLhistorical(ws):
+  rows = app_tables.meteoch_weatherstations.search(station=q.ilike(ws))
+  unique_values = set(row['urlprevy'] for row in rows)
+  sorted_values = sorted(list(unique_values))
+  ws = pd.read_csv(sorted_values, sep=";", header=0, encoding = "latin_1").dropna()
+  return(sorted_values)
+ 
 @anvil.server.callable
 def empty_table(table_name):
   table = getattr(app_tables, table_name)
   table.delete_all_rows()
+
 
 @anvil.server.callable
 def dl_zip(wsid):
