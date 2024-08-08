@@ -54,3 +54,16 @@ def dl():
                                                urlprevy=row["urlprevy"]
                                               )
 
+@anvil.server.callable
+def get_ClimateRegion():
+  rows = app_tables.meteoch_weatherstations.search()
+  unique_values = set(row['region'] for row in rows)
+  sorted_values = sorted(list(unique_values))
+  return sorted_values  
+
+@anvil.server.callable
+def get_Station(ClimateRegion):
+  rows = app_tables.meteoch_weatherstations.search(ClimateRegion=q.ilike(ClimateRegion))
+  unique_values = set(row['name'] for row in rows)
+  sorted_values = sorted(list(unique_values))
+  return sorted_values
