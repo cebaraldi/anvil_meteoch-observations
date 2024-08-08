@@ -16,7 +16,23 @@ class Form1(Form1Template):
     self.drop_down_ClimateRegion.items = sorted(set(self.ws['ClimateRegion']))
     self.label_Station.visible = False
     self.drop_down_Station.visible = False
-    
+        
+def convert_to_number(string_number):
+    try:
+        return int(string_number)
+    except ValueError:
+        try:
+            return float(string_number)
+        except ValueError:
+            return None  # Or handle the error differently
+
+def convert_to_date(string_date):
+    format_string = "%Y%m%d"
+    try:
+        return datetime.strptime(string_date, format_string),
+    except ValueError:
+        return None  # Or handle the error differently
+  
   def drop_down_ClimateRegion_change(self, **event_args):
     """This method is called when an item is selected"""
     cr = self.drop_down_ClimateRegion.selected_value
