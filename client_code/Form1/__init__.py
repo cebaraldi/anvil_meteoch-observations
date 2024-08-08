@@ -7,14 +7,14 @@ import anvil.server
 
 class Form1(Form1Template):
   def __init__(self, **properties):
-    # Set Form properties and Data Bindings.
+    # Set Form properties and Data Bindinss.
     self.init_components(**properties)
 
     # Any code you write here will run before the form opens.
-    ws = anvil.server.call('dl')
-    #self.state.xyz = 0
-    self.state.xyz = ws
-    self.drop_down_ClimateRegion.items = sorted(set(ws['ClimateRegion']))
+    self.ws  []
+    self.ws.append(anvil.server.call('dl'))
+    print(type(slef.ws))
+    self.drop_down_ClimateRegion.items = sorted(set(self.ws['ClimateRegion']))
     self.label_Station.visible = False
     self.drop_down_Station.visible = False
 
