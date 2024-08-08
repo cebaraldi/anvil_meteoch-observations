@@ -4,13 +4,6 @@ from anvil.tables import app_tables
 import anvil.server
 import pandas as pd
 
-# This is a server module. It runs on the Anvil server,
-# rather than in the user's browser.
-#
-# To allow anvil.server.call() to call functions here, we mark
-# them with @anvil.server.callable.
-# Here is an example - you can replace it with your own:
-#
 @anvil.server.callable
 def dl():
   url = 'https://data.geo.admin.ch'
@@ -36,7 +29,7 @@ def dl():
     app_tables.meteoch_weatherstations.add_row(station=row["station"],
                                                label=row["label"],
                                                wigos_id=row["wigos_id"],
-                                               datasince=row["datasince"],
+                                               datasince=convert_to_date(row["datasince"]),
                                                elevation=row["elevation"],
                                                lat=row["latitude"],
                                                lon=row["longitude"],
