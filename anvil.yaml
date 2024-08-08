@@ -18,37 +18,37 @@ db_schema:
     client: none
     server: full
     columns:
-    - name: Station
-      admin_ui: {width: 200, order: 0}
+    - name: station
+      admin_ui: {order: 0, width: 200}
       type: string
     - name: label
       admin_ui: {width: 200, order: 1}
       type: string
-    - name: WIGOS-ID
-      admin_ui: {width: 200, order: 2}
+    - name: wigos-id
+      admin_ui: {order: 2, width: 200}
       type: string
-    - name: DataSince
-      admin_ui: {width: 200, order: 3}
+    - name: datasince
+      admin_ui: {order: 3, width: 200}
       type: date
-    - name: Elevation
-      admin_ui: {width: 200, order: 4}
+    - name: elevation
+      admin_ui: {order: 4, width: 200}
       type: number
-    - name: Latitude
-      admin_ui: {width: 200, order: 5}
+    - name: lat
+      admin_ui: {order: 5, width: 200}
       type: number
-    - name: Longitude
-      admin_ui: {width: 200, order: 6}
+    - name: lon
+      admin_ui: {order: 6, width: 200}
       type: number
-    - name: ClimateRegion
-      admin_ui: {width: 200, order: 7}
+    - name: climateregion
+      admin_ui: {order: 7, width: 200}
       type: string
-    - name: Canton
-      admin_ui: {width: 200, order: 8}
+    - name: canton
+      admin_ui: {order: 8, width: 200}
       type: string
-    - name: URL_prevy
-      admin_ui: {width: 200, order: 9}
+    - name: url_prevy
+      admin_ui: {order: 9, width: 200}
       type: string
-    - name: URL_curry
-      admin_ui: {width: 200, order: 10}
+    - name: url_curry
+      admin_ui: {order: 10, width: 200}
       type: string
     title: MeteoCH_WeatherStations

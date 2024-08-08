@@ -16,11 +16,31 @@ def dl():
   wsurl = url + '/' + path + '/' + 'liste-download-nbcn-d.csv'
   ws = pd.read_csv(wsurl, sep=";", header=0, encoding = "latin_1").dropna()
   pd.options.display.float_format = '{:.2f}'.format
-  ws.rename(columns={'Station height m. a. sea level': 'Elevation'}, inplace=True)
+  ws.rename(columns={'Station': 'station'}, inplace=True)
   ws.rename(columns={'station/location': 'label'}, inplace=True)
-  ws.rename(columns={'Climate region': 'ClimateRegion'}, inplace=True)
-  ws.rename(columns={'Data since': 'DataSince'}, inplace=True)
+  ws.rename(columns={'WIGOS-ID': 'wigos-id'}, inplace=True)
+  ws.rename(columns={'Data since': 'datasince'}, inplace=True)
+  ws.rename(columns={'Station height m. a. sea level': 'elevation'}, inplace=True)
+  ws.rename(columns={'Climate region': 'climateregion'}, inplace=True)
+  ws.rename(columns={'Latitude': 'latitude'}, inplace=True)
+  ws.rename(columns={'Longitude': 'longitude'}, inplace=True)
+  ws.rename(columns={'URL Current year': 'urlcurry'}, inplace=True)
+  ws.rename(columns={'URL Previous years (verified data)': 'urlprevy'}, inplace=True)
 
+  # Insert weather stations to database table MeteoCH_WeatherStations
+  for index, row in ws.iterrows():
+    print(row["station"], row["label"])
+    app_tables.meteoch_weatherstations.add_row(station=row["station"],
+                                               label=row["label"])
+    
+#                                            dstart=convert_to_date(line[6:14]),
+#                                            dend=convert_to_date(line[15:23]),
+#                                            height= convert_to_number(line[24:42]),
+#                                            lat= convert_to_number(line[43:52]),
+#                                            lon= convert_to_number(line[53:60]),
+#                                            name=line[61:101].strip(),
+#                                            region=line[102:].strip()
+#                                            )
   
 #  ['Station', 'label', 'WIGOS-ID', 'DataSince', 'Elevation',
 #       'CoordinatesE', 'CoordinatesN', 'Latitude', 'Longitude',
