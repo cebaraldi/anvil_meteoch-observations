@@ -24,7 +24,7 @@ db_schema:
     - name: label
       admin_ui: {width: 200, order: 1}
       type: string
-    - name: wigos-id
+    - name: wigos_id
       admin_ui: {order: 2, width: 200}
       type: string
     - name: datasince
@@ -45,10 +45,10 @@ db_schema:
     - name: canton
       admin_ui: {order: 8, width: 200}
       type: string
-    - name: url_prevy
+    - name: urlprevy
       admin_ui: {order: 9, width: 200}
       type: string
-    - name: url_curry
+    - name: urlcurry
       admin_ui: {order: 10, width: 200}
       type: string
     title: MeteoCH_WeatherStations

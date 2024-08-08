@@ -1,5 +1,7 @@
+import anvil.tables as tables
+import anvil.tables.query as q
+from anvil.tables import app_tables
 import anvil.server
-import requests
 import pandas as pd
 
 # This is a server module. It runs on the Anvil server,
@@ -18,10 +20,11 @@ def dl():
   pd.options.display.float_format = '{:.2f}'.format
   ws.rename(columns={'Station': 'station'}, inplace=True)
   ws.rename(columns={'station/location': 'label'}, inplace=True)
-  ws.rename(columns={'WIGOS-ID': 'wigos-id'}, inplace=True)
+  ws.rename(columns={'WIGOS-ID': 'wigos_id'}, inplace=True)
   ws.rename(columns={'Data since': 'datasince'}, inplace=True)
   ws.rename(columns={'Station height m. a. sea level': 'elevation'}, inplace=True)
   ws.rename(columns={'Climate region': 'climateregion'}, inplace=True)
+  ws.rename(columns={'Canton': 'canton'}, inplace=True)
   ws.rename(columns={'Latitude': 'latitude'}, inplace=True)
   ws.rename(columns={'Longitude': 'longitude'}, inplace=True)
   ws.rename(columns={'URL Current year': 'urlcurry'}, inplace=True)
@@ -31,17 +34,19 @@ def dl():
   for index, row in ws.iterrows():
     print(row["station"], row["label"])
     app_tables.meteoch_weatherstations.add_row(station=row["station"],
-                                               label=row["label"])
+                                               label=row["label"],
+                                               wigos_id=row["wigos_id"],
+                                               datasince=row["datasince"],
+                                               elevation=row["elevation"],
+                                               lat=row["latitude"],
+                                               lon=row["longitude"],
+                                               climateregion=row["climateregion"],
+                                               canton=row["canton"],
+                                               urlcurry=row["urlcurry"],
+                                               urlprevy=row["urlprevy"]
+                                              )
     
-#                                            dstart=convert_to_date(line[6:14]),
-#                                            dend=convert_to_date(line[15:23]),
-#                                            height= convert_to_number(line[24:42]),
-#                                            lat= convert_to_number(line[43:52]),
-#                                            lon= convert_to_number(line[53:60]),
-#                                            name=line[61:101].strip(),
-#                                            region=line[102:].strip()
-#                                            )
-  
+     
 #  ['Station', 'label', 'WIGOS-ID', 'DataSince', 'Elevation',
 #       'CoordinatesE', 'CoordinatesN', 'Latitude', 'Longitude',
 #       'ClimateRegion', 'Canton', 'URL Previous years (verified data)',
