@@ -72,3 +72,24 @@ def get_Station(ClimateRegion):
 def empty_table(table_name):
   table = getattr(app_tables, table_name)
   table.delete_all_rows()
+
+@anvil.server.callable
+def dl_zip(wsid):
+  url = "https://opendata.dwd.de/"
+  path = 'climate_environment/CDC/observations_germany/climate/daily/kl/'
+  recent_path = path + 'recent/'
+  filename = f"tageswerte_KL_{wsid}_akt.zip"
+  url = url + recent_path + filename
+  body = {}
+  r = requests.get(url)
+  with closing(r), zipfile.ZipFile(io.BytesIO(r.content)) as archive:   
+    # print({member.filename: archive.read(member) for member in archive.infolist()})
+    body ={member.filename: archive.read(member) 
+           for member in archive.infolist() 
+           if (member.filename.startswith('produkt_klima_tag_'))
+          }
+  df = dict_to_dataframe(body)
+  df = df.drop('STATIONS_ID', axis=1) # already given as parameter
+  dict_list = df.to_dict('list')
+  return(dict_list)
+
