@@ -64,30 +64,42 @@ class Form1(Form1Template):
   def drop_down_Station_change(self, **event_args):
     """This method is called when an item is selected"""
     ws = self.drop_down_Station.selected_value
-    data = anvil.server.call('get_observations', 
+    dict = anvil.server.call('get_observations', 
                       ws,
                       self.check_box_CurrentData.checked, 
                       self.check_box_HistoricalData.checked
                      )
     Notification('observations downloaded').show()
-    
-    #print(data.keys())
-    obsdate = data['date']
-    #tmin = data['TNK']
-    tavg = data['tre200d0']
-    #tmax = data['TXK']
-    #print(obsdate)
-    #print(tavg)
+    #print(dict.keys())
+
+    # Exract observations from dictionary 
+    obsdate = dict['date']
+    tmin = dict['tre200dn']
+    tavg = dict['tre200d0']
+    tmax = dict['tre200dx']
     #print(f"Length of mininum temperatue observations is {len(tmin)}")
     #print(f"Length of maxinum temperatue observations is {len(tmax)}")
 
+    # Transform to appropriate dict types
     x = strings_to_dates(obsdate, date_format="%Y%m%d")
-    y = replace_negative_999(strings_to_floats(tavg))
-    #print(y)
+    y1 = replace_negative_999(strings_to_floats(tavg))
+    ym = replace_negative_999(strings_to_floats(tmin))
+    yx = replace_negative_999(strings_to_floats(tmax))
+   
+    # Create traces
+    #trace1 = go.scatter(x=x, y=y1, mode='markers', name='avg')
+    #trace2 = go.scatter(x=x, y=ym, mode='lines', name='min')
+    #trace3 = go.scatter(x=x, y=yx, mode='lines', name='max')
 
-    # Create a Plotly figure
-    fig = go.Figure(data=go.Scatter(x=x, y=y))
+    # Create a Plotly figure and add traces
+    fig = go.Figure()
+    fig.add_trace(go.scatter(x=x, y=y1, mode='markers', name='avg'))
+    #fig.add_trace(trace2)
+    #fig.add_trace(trace3)
 
+    # Customize layout (optional)
+    fig.update_layout(title='Air temperature [°C]')    
+    
     # Display the plot in an Anvil Plot component (client side)
     self.plot_1.figure = fig        
 
@@ -135,4 +147,8 @@ class Form1(Form1Template):
 
   def check_box_CurrentData_change(self, **event_args):
     """This method is called when this checkbox is checked or unchecked"""
-    pass
+    self.check_box_CurrentData.checked
+
+  def check_box_HistoricalData_change(self, **event_args):
+    """This method is called when this checkbox is checked or unchecked"""
+    self.check_box_HistoricalData.checked

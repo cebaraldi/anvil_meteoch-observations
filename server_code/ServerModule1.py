@@ -63,6 +63,7 @@ def get_climate_region():
   rows = app_tables.meteoch_weatherstations.search()
   unique_values = set(row['climateregion'] for row in rows)
   sorted_values = sorted(list(unique_values))
+  sorted_values.insert(0,"<Please select a region>")
   return(sorted_values)
 
 @anvil.server.callable
@@ -70,6 +71,7 @@ def get_station(climate_region):
   rows = app_tables.meteoch_weatherstations.search(climateregion=q.ilike(climate_region))
   unique_values = set(row['station'] for row in rows)
   sorted_values = sorted(list(unique_values))
+  sorted_values.insert(0,"<Please select a station>")
   return(sorted_values)
 
 @anvil.server.callable
@@ -82,8 +84,6 @@ def get_wsid(station):
 @anvil.server.callable
 def get_observations(ws, current=True, historical=False):
   rows = app_tables.meteoch_weatherstations.search(station=q.ilike(ws))
-  if not current and not historical:
-    current = True
   if current:
     urlcurry = list(set(row['urlcurry'] for row in rows))[0]
     cws = pd.read_csv(urlcurry, sep=";", header=0, encoding = "latin_1").dropna()
@@ -94,9 +94,7 @@ def get_observations(ws, current=True, historical=False):
     pws = pd.read_csv(urlprevy, sep=";", header=0, encoding = "latin_1").dropna()
     if not current:
       cws = pws[0:0]
-  print(dir())
   df = pd.concat([cws, pws])
-  print(df.size)
   dict_list = df.to_dict('list')
   return(dict_list)
 
