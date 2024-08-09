@@ -66,8 +66,8 @@ def get_climate_region():
   return(sorted_values)
 
 @anvil.server.callable
-def get_station(ClimateRegion):
-  rows = app_tables.meteoch_weatherstations.search(climateregion=q.ilike(ClimateRegion))
+def get_station(climate_region):
+  rows = app_tables.meteoch_weatherstations.search(climateregion=q.ilike(climate_region))
   unique_values = set(row['station'] for row in rows)
   sorted_values = sorted(list(unique_values))
   return(sorted_values)
@@ -86,15 +86,15 @@ def get_observations(ws, current=True, historical=False):
     current = True
   print(current,historical)
   if current:
-    urlcurry = set(row['urlcurry'] for row in rows)
+    urlcurry = list(set(row['urlcurry'] for row in rows))[0]
     print(urlcurry)
     cws = pd.read_csv(urlcurry, sep=";", header=0, encoding = "latin_1").dropna()
-    print(urlcurry)
+    print(cws)
   if historical:
-    urlprevy = set(row['urlprevy'] for row in rows)
+    urlprevy = list(set(row['urlprevy'] for row in rows))[0]
     print(urlprevy)
     pws = pd.read_csv(urlprevy, sep=";", header=0, encoding = "latin_1").dropna()
-    print(urlprevy)
+    print(pws)
   #return(sorted_values)
 
 def get_url_historical(ws):
@@ -108,24 +108,3 @@ def get_url_historical(ws):
 def empty_table(table_name):
   table = getattr(app_tables, table_name)
   table.delete_all_rows()
-
-@anvil.server.callable
-def dl_zip(wsid):
-  url = "https://opendata.dwd.de/"
-  path = 'climate_environment/CDC/observations_germany/climate/daily/kl/'
-  recent_path = path + 'recent/'
-  filename = f"tageswerte_KL_{wsid}_akt.zip"
-  url = url + recent_path + filename
-  body = {}
-  r = requests.get(url)
-  with closing(r), zipfile.ZipFile(io.BytesIO(r.content)) as archive:   
-    # print({member.filename: archive.read(member) for member in archive.infolist()})
-    body ={member.filename: archive.read(member) 
-           for member in archive.infolist() 
-           if (member.filename.startswith('produkt_klima_tag_'))
-          }
-  df = dict_to_dataframe(body)
-  df = df.drop('STATIONS_ID', axis=1) # already given as parameter
-  dict_list = df.to_dict('list')
-  return(dict_list)
-

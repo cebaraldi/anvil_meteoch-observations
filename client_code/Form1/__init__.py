@@ -31,7 +31,7 @@ class Form1(Form1Template):
     """This method is called when an item is selected"""
     ws = self.drop_down_Station.selected_value
     print(ws) 
-    anvil.server.call('get_observations', 
+    data = anvil.server.call('get_observations', 
                       ws,
                       self.check_box_CurrentData.checked, 
                       self.check_box_HistoricalData.checked
@@ -42,7 +42,7 @@ class Form1(Form1Template):
 #      urlprevy = anvil.server.call('get_url_historical', ws)
     #print(wsid) 
     
-    data = anvil.server.call('dl_csv', wsid)
+    #data = anvil.server.call('dl_csv', wsid)
     Notification('observations downloaded').show()
     
     #print(data.keys())
