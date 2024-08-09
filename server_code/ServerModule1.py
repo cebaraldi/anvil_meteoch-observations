@@ -95,7 +95,9 @@ def get_observations(ws, current=True, historical=False):
     print(urlprevy)
     pws = pd.read_csv(urlprevy, sep=";", header=0, encoding = "latin_1").dropna()
     print(pws)
-  #return(sorted_values)
+  df = cws
+  dict_list = df.to_dict('list')
+  return(dict_list)
 
 def get_url_historical(ws):
   rows = app_tables.meteoch_weatherstations.search(station=q.ilike(ws))
@@ -108,3 +110,4 @@ def get_url_historical(ws):
 def empty_table(table_name):
   table = getattr(app_tables, table_name)
   table.delete_all_rows()
+

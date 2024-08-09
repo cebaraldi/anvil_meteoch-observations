@@ -45,18 +45,18 @@ class Form1(Form1Template):
     #data = anvil.server.call('dl_csv', wsid)
     Notification('observations downloaded').show()
     
-    #print(data.keys())
-    #obsdate = data['MESS_DATUM']
+    print(data.keys())
+    obsdate = data['date']
     #tmin = data['TNK']
-    #tavg = data['TMK']
+    tavg = data['tre200d0']
     #tmax = data['TXK']
     #print(obsdate)
     #print(tavg)
     #print(f"Length of mininum temperatue observations is {len(tmin)}")
     #print(f"Length of maxinum temperatue observations is {len(tmax)}")
 
-    #x = strings_to_dates(obsdate, date_format="%Y%m%d")
-    #y = replace_negative_999(strings_to_floats(tavg))
+    x = strings_to_dates(obsdate, date_format="%Y%m%d")
+    y = replace_negative_999(strings_to_floats(tavg))
     #print(y)
 
     # Create a Plotly figure
@@ -65,14 +65,44 @@ class Form1(Form1Template):
     # Display the plot in an Anvil Plot component (client side)
     #self.plot_1.figure = fig        
 
-  def check_box_HistoricalData_change(self, **event_args):
-    """This method is called when this checkbox is checked or unchecked"""
-    pass
+# ## Air temperature
+#axs.plot(df.index, df.tre200d0)
+#axs.plot(df.index, df.tre200dn, color='0.8')
+#axs.plot(df.index, df.tre200dx, color='0.8')
+#plt.ylabel('Air temperature [°C]')
+#plt.title('Air temperature 2 m above ground; daily mean\n' + wstation)
 
-  def check_box_CurrentData_change(self, **event_args):
-    """This method is called when this checkbox is checked or unchecked"""
-    pass
+# ## Global radiation
+#axs.plot(df.index, df.gre000d0)
+#plt.ylabel('Global radiation [W/m²]')
+#plt.title('Global radiation; daily mean\n' + wstation)
 
+# ## Total snow depth
+#axs.plot(df.index, df.hto000d0)
+#plt.ylabel('Total snow depth [cm]')
+#plt.title('Total snow depth; morning recording at 6 UTC\n' + wstation)
 
+# ## Cloud cover
+#xs.plot(df.index, df.nto000d0)
+#plt.ylabel('Cloud cover [%]')
+#plt.title('Cloud cover; daily mean\n' + wstation)
 
+# ## Pressure at station level 
+#xs.plot(df.index, df.prestad0)
+#plt.ylabel('Pressure at station level [hPa]')
+#plt.title('Pressure at station level (QFE); daily mean\n' + wstation)
 
+# ## Precipitation
+#xs.plot(df.index, df.rre150d0)
+#plt.ylabel('Cloud cover [mm]')
+#plt.title('Precipitation; daily total 6 UTC\n' + wstation)
+
+# ## Sunshine duration
+#xs.plot(df.index, df.sre000d0)
+#plt.ylabel('Sunshine duration [min]')
+#plt.title('Sunshine duration; daily total\n' + wstation)
+
+# ## Relative air humidity
+#xs.plot(df.index, df.ure200d0)
+#plt.ylabel('Relative air humidity [%]')
+#plt.title('Relative air humidity; 2 m above ground; daily\n' + wstation)
