@@ -42,6 +42,7 @@ components:
       properties: {text: Historical Data}
       type: CheckBox
       layout_properties: {row: MFCKYR, width_xs: 6, col_xs: 0}
+      event_bindings: {change: check_box_HistoricalData_change}
     - name: plot_1
       properties: {}
       type: Plot

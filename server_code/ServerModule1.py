@@ -26,7 +26,7 @@ def convert_to_date(string_date):
     return None  # Or handle the error differently
 
 @anvil.server.callable
-def writeWeatherStations2DB():
+def write_weather_stations2DB():
   url = 'https://data.geo.admin.ch'
   path = 'ch.meteoschweiz.klima/nbcn-tageswerte'
   wsurl = url + '/' + path + '/' + 'liste-download-nbcn-d.csv'
@@ -59,43 +59,45 @@ def writeWeatherStations2DB():
                                               )
 
 @anvil.server.callable
-def get_ClimateRegion():
+def get_climate_region():
   rows = app_tables.meteoch_weatherstations.search()
   unique_values = set(row['climateregion'] for row in rows)
   sorted_values = sorted(list(unique_values))
   return(sorted_values)
 
 @anvil.server.callable
-def get_Station(ClimateRegion):
+def get_station(ClimateRegion):
   rows = app_tables.meteoch_weatherstations.search(climateregion=q.ilike(ClimateRegion))
   unique_values = set(row['station'] for row in rows)
   sorted_values = sorted(list(unique_values))
   return(sorted_values)
 
 @anvil.server.callable
-def get_WSID(station):
+def get_wsid(station):
   rows = app_tables.meteoch_weatherstations.search(station=q.ilike(station))
   unique_values = set(row['wsid'] for row in rows)
   sorted_values = sorted(list(unique_values))
   return(sorted_values)
 
 @anvil.server.callable
-def get_Observations(ws, current=True, historical=False):
+def get_observations(ws, current=True, historical=False):
   rows = app_tables.meteoch_weatherstations.search(station=q.ilike(ws))
   if not current and not historical:
     current = True
   print(current,historical)
   if current:
     urlcurry = set(row['urlcurry'] for row in rows)
+    print(urlcurry)
     cws = pd.read_csv(urlcurry, sep=";", header=0, encoding = "latin_1").dropna()
     print(urlcurry)
   if historical:
     urlprevy = set(row['urlprevy'] for row in rows)
+    print(urlprevy)
     pws = pd.read_csv(urlprevy, sep=";", header=0, encoding = "latin_1").dropna()
     print(urlprevy)
   #return(sorted_values)
 
-def get_URLhistorical(ws):
+def get_url_historical(ws):
   rows = app_tables.meteoch_weatherstations.search(station=q.ilike(ws))
   unique_values = set(row['urlprevy'] for row in rows)
   sorted_values = sorted(list(unique_values))
@@ -106,7 +108,6 @@ def get_URLhistorical(ws):
 def empty_table(table_name):
   table = getattr(app_tables, table_name)
   table.delete_all_rows()
-
 
 @anvil.server.callable
 def dl_zip(wsid):
