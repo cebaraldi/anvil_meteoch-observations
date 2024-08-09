@@ -29,6 +29,17 @@ def strings_to_floats(string_list):
       print(f"Error converting '{string_value}' to float")
   return float_list
 
+def replace_negative_999(data):
+  """Replaces -999 values in a list with None.
+
+  Args:
+    data: A list of float values.
+
+  Returns:
+    A new list with -999 values replaced by None.
+  """
+  return [value if value != -999 else None for value in data]
+
 class Form1(Form1Template):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
@@ -83,10 +94,10 @@ class Form1(Form1Template):
     #print(y)
 
     # Create a Plotly figure
-    #fig = go.Figure(data=go.Scatter(x=x, y=y))
+    fig = go.Figure(data=go.Scatter(x=x, y=y))
 
     # Display the plot in an Anvil Plot component (client side)
-    #self.plot_1.figure = fig        
+    self.plot_1.figure = fig        
 
 # ## Air temperature
 #axs.plot(df.index, df.tre200d0)
