@@ -104,14 +104,14 @@ class Form1(Form1Template):
     # Display the plot in an Anvil Plot component (client side)
     self.plot_1.figure = fig       
 
-# ## Air temperature
+## Air temperature
 #axs.plot(df.index, df.tre200d0)
 #axs.plot(df.index, df.tre200dn, color='0.8')
 #axs.plot(df.index, df.tre200dx, color='0.8')
 #plt.ylabel('Air temperature [°C]')
 #plt.title('Air temperature 2 m above ground; daily mean\n' + wstation)
 
-# ## Global radiation
+## Global radiation
 #axs.plot(df.index, df.gre000d0)
 #plt.ylabel('Global radiation [W/m²]')
 #plt.title('Global radiation; daily mean\n' + wstation)
@@ -126,22 +126,22 @@ class Form1(Form1Template):
 #plt.ylabel('Cloud cover [%]')
 #plt.title('Cloud cover; daily mean\n' + wstation)
 
-# ## Pressure at station level 
+## Pressure at station level 
 #xs.plot(df.index, df.prestad0)
 #plt.ylabel('Pressure at station level [hPa]')
 #plt.title('Pressure at station level (QFE); daily mean\n' + wstation)
 
-# ## Precipitation
+## Precipitation
 #xs.plot(df.index, df.rre150d0)
 #plt.ylabel('Cloud cover [mm]')
 #plt.title('Precipitation; daily total 6 UTC\n' + wstation)
 
-# ## Sunshine duration
+## Sunshine duration
 #xs.plot(df.index, df.sre000d0)
 #plt.ylabel('Sunshine duration [min]')
 #plt.title('Sunshine duration; daily total\n' + wstation)
 
-# ## Relative air humidity
+## Relative air humidity
 #xs.plot(df.index, df.ure200d0)
 #plt.ylabel('Relative air humidity [%]')
 #plt.title('Relative air humidity; 2 m above ground; daily\n' + wstation)
