@@ -26,7 +26,7 @@ def convert_to_date(string_date):
     return None  # Or handle the error differently
 
 @anvil.server.callable
-def getWeatherStations():
+def writeWeatherStations2DB():
   url = 'https://data.geo.admin.ch'
   path = 'ch.meteoschweiz.klima/nbcn-tageswerte'
   wsurl = url + '/' + path + '/' + 'liste-download-nbcn-d.csv'
@@ -63,6 +63,8 @@ def get_ClimateRegion():
   rows = app_tables.meteoch_weatherstations.search()
   unique_values = set(row['climateregion'] for row in rows)
   sorted_values = sorted(list(unique_values))
+  print(sorted_values)
+  print(type(sorted_values))
   return(sorted_values)
 
 @anvil.server.callable

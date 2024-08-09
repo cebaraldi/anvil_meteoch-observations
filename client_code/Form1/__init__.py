@@ -12,8 +12,9 @@ class Form1(Form1Template):
     self.init_components(**properties)
 
     # Any code you write here will run before the form opens.
-    #anvil.server.call('empty_table', 'meteoch_weatherstations')
-    #anvil.server.call('getWeatherStations')   
+    # DB = 'meteoch_weatherstations'
+    #anvil.server.call('empty_table', DB)
+    #anvil.server.call('writeWeatherStations2DB')   
     
     self.drop_down_ClimateRegion.items = anvil.server.call('get_ClimateRegion')
     self.label_Station.visible = False
