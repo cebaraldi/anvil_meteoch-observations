@@ -1,6 +1,6 @@
 allow_embedding: false
-package_name: MeteoCH_Weather_Stations
-name: MeteoCH Weather Stations
+package_name: MeteoCH_Observations
+name: MeteoCH Observations
 startup_form: Form1
 renamed: true
 runtime_options:
