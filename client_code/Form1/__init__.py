@@ -74,17 +74,15 @@ class Form1(Form1Template):
 
     # Exract observations from dictionary 
     obsdate = dict['date']
-    tmin = dict['tre200dn']
+    #tmin = dict['tre200dn']
     tavg = dict['tre200d0']
-    tmax = dict['tre200dx']
-    #print(f"Length of mininum temperatue observations is {len(tmin)}")
-    #print(f"Length of maxinum temperatue observations is {len(tmax)}")
+    #tmax = dict['tre200dx']
 
     # Transform to appropriate dict types
     x = strings_to_dates(obsdate, date_format="%Y%m%d")
     y = replace_negative_999(strings_to_floats(tavg))
-    ym = replace_negative_999(strings_to_floats(tmin))
-    yx = replace_negative_999(strings_to_floats(tmax))
+    #ym = replace_negative_999(strings_to_floats(tmin))
+    #yx = replace_negative_999(strings_to_floats(tmax))
    
     # Create traces
     #trace1 = go.scatter(x=x, y=y, mode='markers', name='avg')
@@ -92,21 +90,19 @@ class Form1(Form1Template):
     #trace3 = go.scatter(x=x, y=yx, mode='lines', name='max')
 
     # Create a Plotly figure and add traces
-    fig = go.Figure(data=go.Scatter(
-      x=x, y=y, 
-      mode='markers', 
-      name='avg',
-      title='Air temperature [°C]'
-    )
-    #fig.add_trace(trace1)
+    #fig.add_trace(trace1) # NotImplementedError: add_trace is not yet implemented...?!
     #fig.add_trace(trace2)
     #fig.add_trace(trace3)
 
     # Customize layout (optional)
-    #fig.update_layout(title='Air temperature [°C]')    
+    layout = go.Layout(title='Air temperature [°C]')
+    #fig.update_layout(title='Air temperature [°C]', layout=layout'))    
+
+    # Create a Plotly figure
+    fig = go.Figure(data=go.Scatter(x=x, y=y), layout=layout)
 
     # Display the plot in an Anvil Plot component (client side)
-    self.plot_1.figure = fig        
+    self.plot_1.figure = fig       
 
 # ## Air temperature
 #axs.plot(df.index, df.tre200d0)
