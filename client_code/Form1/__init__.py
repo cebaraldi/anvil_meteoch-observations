@@ -92,20 +92,18 @@ class Form1(Form1Template):
     #trace3 = go.scatter(x=x, y=yx, mode='lines', name='max')
 
     # Create a Plotly figure and add traces
-    fig = go.Figure()
-    fig.add_trace(go.Scatter(
+    fig = go.Figure(data=go.Scatter(
       x=x, y=y, 
       mode='markers', 
-      name='avg'
-    ))
+      name='avg',
+      title='Air temperature [°C]'
+    )
+    #fig.add_trace(trace1)
     #fig.add_trace(trace2)
     #fig.add_trace(trace3)
 
     # Customize layout (optional)
-    fig.update_layout(title='Air temperature [°C]')    
-
-    # Create a Plotly figure
-    fig = go.Figure(data=go.Scatter(x=x, y=y))
+    #fig.update_layout(title='Air temperature [°C]')    
 
     # Display the plot in an Anvil Plot component (client side)
     self.plot_1.figure = fig        
