@@ -82,25 +82,31 @@ class Form1(Form1Template):
 
     # Transform to appropriate dict types
     x = strings_to_dates(obsdate, date_format="%Y%m%d")
-    y1 = replace_negative_999(strings_to_floats(tavg))
+    y = replace_negative_999(strings_to_floats(tavg))
     ym = replace_negative_999(strings_to_floats(tmin))
     yx = replace_negative_999(strings_to_floats(tmax))
    
     # Create traces
-    #trace1 = go.scatter(x=x, y=y1, mode='markers', name='avg')
+    #trace1 = go.scatter(x=x, y=y, mode='markers', name='avg')
     #trace2 = go.scatter(x=x, y=ym, mode='lines', name='min')
     #trace3 = go.scatter(x=x, y=yx, mode='lines', name='max')
 
     # Create a Plotly figure and add traces
     fig = go.Figure()
-    fig.add_trace(go.scatter(x=x, y=y1, mode='markers', name='avg'))
+    fig.add_trace(go.Scatter(
+      x=x, y=y, 
+      mode='markers', 
+      name='avg'
+    ))
     #fig.add_trace(trace2)
     #fig.add_trace(trace3)
 
     # Customize layout (optional)
     fig.update_layout(title='Air temperature [°C]')    
+
+    # Create a Plotly figure
     fig = go.Figure(data=go.Scatter(x=x, y=y))
-    
+
     # Display the plot in an Anvil Plot component (client side)
     self.plot_1.figure = fig        
 
