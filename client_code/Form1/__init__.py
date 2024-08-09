@@ -64,3 +64,7 @@ class Form1(Form1Template):
 
     # Display the plot in an Anvil Plot component (client side)
     #self.plot_1.figure = fig        
+
+  def check_box_CurrentData_change(self, **event_args):
+    """This method is called when this checkbox is checked or unchecked"""
+    pass
