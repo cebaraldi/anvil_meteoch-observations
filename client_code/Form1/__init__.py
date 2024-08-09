@@ -99,6 +99,7 @@ class Form1(Form1Template):
 
     # Customize layout (optional)
     fig.update_layout(title='Air temperature [°C]')    
+    fig = go.Figure(data=go.Scatter(x=x, y=y))
     
     # Display the plot in an Anvil Plot component (client side)
     self.plot_1.figure = fig        
