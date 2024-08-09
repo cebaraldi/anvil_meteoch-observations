@@ -84,18 +84,19 @@ def get_observations(ws, current=True, historical=False):
   rows = app_tables.meteoch_weatherstations.search(station=q.ilike(ws))
   if not current and not historical:
     current = True
-  print(current,historical)
   if current:
     urlcurry = list(set(row['urlcurry'] for row in rows))[0]
-    print(urlcurry)
     cws = pd.read_csv(urlcurry, sep=";", header=0, encoding = "latin_1").dropna()
-    print(cws)
+    if not historical:
+      pws = cws[0:0]
   if historical:
     urlprevy = list(set(row['urlprevy'] for row in rows))[0]
-    print(urlprevy)
     pws = pd.read_csv(urlprevy, sep=";", header=0, encoding = "latin_1").dropna()
-    print(pws)
-  df = cws
+    if not current:
+      cws = pws[0:0]
+  print(dir())
+  df = pd.concat([cws, pws])
+  print(df.size)
   dict_list = df.to_dict('list')
   return(dict_list)
 

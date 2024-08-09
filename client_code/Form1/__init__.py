@@ -64,22 +64,14 @@ class Form1(Form1Template):
   def drop_down_Station_change(self, **event_args):
     """This method is called when an item is selected"""
     ws = self.drop_down_Station.selected_value
-    print(ws) 
     data = anvil.server.call('get_observations', 
                       ws,
                       self.check_box_CurrentData.checked, 
                       self.check_box_HistoricalData.checked
                      )
-#    if self.check_box_CurrentData.checked:
-#      urlcurry = anvil.server.call('get_url_current', ws)
-#    if self.check_box_HistoricalData.checked:       
-#      urlprevy = anvil.server.call('get_url_historical', ws)
-    #print(wsid) 
-    
-    #data = anvil.server.call('dl_csv', wsid)
     Notification('observations downloaded').show()
     
-    print(data.keys())
+    #print(data.keys())
     obsdate = data['date']
     #tmin = data['TNK']
     tavg = data['tre200d0']
@@ -140,3 +132,7 @@ class Form1(Form1Template):
 #xs.plot(df.index, df.ure200d0)
 #plt.ylabel('Relative air humidity [%]')
 #plt.title('Relative air humidity; 2 m above ground; daily\n' + wstation)
+
+  def check_box_CurrentData_change(self, **event_args):
+    """This method is called when this checkbox is checked or unchecked"""
+    pass
