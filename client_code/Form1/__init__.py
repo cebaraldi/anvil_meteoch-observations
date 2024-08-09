@@ -5,6 +5,29 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 import anvil.server
+from datetime import datetime
+
+def strings_to_dates(string_list, date_format="%Y-%m-%d"):  # Adjust date format as needed
+  date_list = []
+  for string_value in string_list:
+    try:
+      date_value = datetime.strptime(string_value, date_format).date()
+      date_list.append(date_value)
+    except ValueError:
+      # Handle invalid dates, e.g., log an error or skip the value
+      print(f"Error converting '{string_value}' to date with format {date_format}")
+  return date_list
+  
+def strings_to_floats(string_list):
+  float_list = []
+  for string_value in string_list:
+    try:
+      float_value = float(string_value)
+      float_list.append(float_value)
+    except ValueError:
+      # Handle invalid values, e.g., log an error or skip the value
+      print(f"Error converting '{string_value}' to float")
+  return float_list
 
 class Form1(Form1Template):
   def __init__(self, **properties):
