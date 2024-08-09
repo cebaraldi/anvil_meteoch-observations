@@ -11,7 +11,7 @@ def strings_to_dates(string_list, date_format="%Y-%m-%d"):  # Adjust date format
   date_list = []
   for string_value in string_list:
     try:
-      date_value = datetime.strptime(string_value, date_format).date()
+      date_value = datetime.strptime(str(string_value), date_format).date()
       date_list.append(date_value)
     except ValueError:
       # Handle invalid dates, e.g., log an error or skip the value
