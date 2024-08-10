@@ -60,3 +60,4 @@ components:
   properties: {text: MeteoCH}
   type: Label
   layout_properties: {slot: title}
+slots: {}
