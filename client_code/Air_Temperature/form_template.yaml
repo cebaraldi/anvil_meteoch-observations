@@ -66,11 +66,12 @@ components:
   layout_properties: {slot: left-nav}
   components:
   - name: link_1
-    properties: {icon: 'fa:line-chart'}
+    properties: {icon: 'fa:line-chart', text: Air temperature}
     type: Link
     layout_properties: {grid_position: 'REROPO,DDEWAH'}
+    event_bindings: {click: link_1_click}
   - name: link_2
-    properties: {icon: 'fa:globe'}
+    properties: {icon: 'fa:globe', text: Google Maps}
     type: Link
     layout_properties: {grid_position: 'KSQAZD,JAXFSB'}
 slots: {}

@@ -1,10 +1,8 @@
 unique_ids:
   forms:
-    Form1: G7VMF7NVZ46TGBRYHEWWQOLGRDXT3Y5A
+    Air_Temperature: '172347241045685080959511.12082'
     GoogleMaps: '1723299459374640663715018.8306'
-    Form3: '1723299469549227207652095.08743'
-  modules:
-    Form1.utility: '1723111702649249597850453.4946'
+  modules: {}
   server_modules:
     ServerModule1: '1723052701227438881306235.3556'
   assets:

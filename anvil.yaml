@@ -1,7 +1,7 @@
 allow_embedding: false
 package_name: MeteoCH_Observations
 name: MeteoCH Observations
-startup_form: Form1
+startup_form: null
 renamed: true
 runtime_options:
   version: 3
@@ -54,3 +54,4 @@ db_schema:
       type: string
     title: MeteoCH_WeatherStations
 native_deps: null
+startup: {type: form, module: Air_Temperature}
