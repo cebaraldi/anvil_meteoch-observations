@@ -60,4 +60,17 @@ components:
   properties: {text: MeteoCH}
   type: Label
   layout_properties: {slot: title}
+- name: column_panel_1
+  properties: {spacing_above: none, spacing_below: none, col_spacing: none}
+  type: ColumnPanel
+  layout_properties: {slot: left-nav}
+  components:
+  - name: link_1
+    properties: {icon: 'fa:line-chart'}
+    type: Link
+    layout_properties: {grid_position: 'REROPO,DDEWAH'}
+  - name: link_2
+    properties: {icon: 'fa:globe'}
+    type: Link
+    layout_properties: {grid_position: 'KSQAZD,JAXFSB'}
 slots: {}

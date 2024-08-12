@@ -7,6 +7,11 @@ components:
   properties: {}
   name: content_panel
   layout_properties: {slot: default}
+  components:
+  - name: map_1
+    properties: {height: 652}
+    type: GoogleMap
+    layout_properties: {grid_position: 'WVYTNV,TQVMEG'}
 - type: FlowPanel
   properties: {}
   name: navbar_links
