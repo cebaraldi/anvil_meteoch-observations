@@ -7,7 +7,6 @@ from anvil.tables import app_tables
 import anvil.server
 from datetime import datetime
 
-
 def strings_to_dates(
   string_list, date_format="%Y-%m-%d"
 ):  # Adjust date format as needed
@@ -21,7 +20,6 @@ def strings_to_dates(
       print(f"Error converting '{string_value}' to date with format {date_format}")
   return date_list
 
-
 def strings_to_floats(string_list):
   float_list = []
   for string_value in string_list:
@@ -33,7 +31,6 @@ def strings_to_floats(string_list):
       print(f"Error converting '{string_value}' to float")
   return float_list
 
-
 def replace_negative_999(data):
   """Replaces -999 values in a list with None.
 
@@ -44,7 +41,6 @@ def replace_negative_999(data):
     A new list with -999 values replaced by None.
   """
   return [value if value != -999 else None for value in data]
-
 
 class Air_Temperature(Air_TemperatureTemplate):
   def __init__(self, **properties):
