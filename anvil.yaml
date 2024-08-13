@@ -1,6 +1,6 @@
 allow_embedding: false
-package_name: MeteoCH_Observations__Prod_
-name: MeteoCH Observations (Prod)
+package_name: MeteoCH_Observations___Prod
+name: MeteoCH Observations - Prod
 startup_form: null
 renamed: true
 runtime_options:
