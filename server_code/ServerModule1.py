@@ -102,7 +102,7 @@ def get_url_historical(ws):
   rows = app_tables.meteoch_weatherstations.search(station=q.ilike(ws))
   unique_values = set(row['urlprevy'] for row in rows)
   sorted_values = sorted(list(unique_values))
-  ws = pd.read_csv(sorted_values, sep=";", header=0, encoding = "latin_1").dropna()
+  #ws = pd.read_csv(sorted_values, sep=";", header=0, encoding = "latin_1").dropna()
   return(sorted_values)
  
 @anvil.server.callable
